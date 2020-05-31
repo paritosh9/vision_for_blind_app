@@ -18,49 +18,56 @@ if not video.isOpened():
 # a variable
 number_of_frames_captured = 0
 
-#while True:
-number_of_frames_captured = number_of_frames_captured + 1
+# write frame to image file
+filename = "tiger.jpg"
 
-# Create a frame object
-# video.read() returns a bool (True/False).
-# If frame is read correctly, it will be True.
-# So you can check end of the video by checking this return value.
-check, frame = video.read()
+while True:
+    number_of_frames_captured = number_of_frames_captured + 1
 
-# print return value (check) and frame.shape (matrix dimensions)
-print('video.read() Return value - ', check)
-print('frame matrix dimensions - ', frame.shape)
-h, w, c = frame.shape
-#print(frame)  #Representing Image
+    # Create a frame object
+    # video.read() returns a bool (True/False).
+    # If frame is read correctly, it will be True.
+    # So you can check end of the video by checking this return value.
+    check, frame = video.read()
 
-# Converting to grayscale
-gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-print('frame matrix dimensions after grayscaling - ', gray_frame.shape)
+    # print return value (check) and frame.shape (matrix dimensions)
+    print('video.read() Return value - ', check)
+    print('frame matrix dimensions - ', frame.shape)
+    h, w, c = frame.shape
+    #print(frame)  #Representing Image
 
-# Show the frame
-# cv2.imshow() method is used to display an image in a window.
-# The window automatically fits to the image size
-cv2.imshow("Capturing", gray_frame)
+    # Converting to grayscale
+    #gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    #print('frame matrix dimensions after grayscaling - ', gray_frame.shape)
 
-# For press any key to out (milliseconds)
-#cv2.waitKey(1)
+    # Show the frame
+    # cv2.imshow() method is used to display an image in a window.
+    # The window automatically fits to the image size
+    # cv2.imshow("Capturing", gray_frame)
+    cv2.imshow("Capturing", frame)
 
-# For Playing
-# The function waitKey waits for a key event infinitely (when delay < 0 ) or for delay milliseconds, when it is positive.
-# Since the OS has a minimum time between switching threads, the function will not wait exactly delay ms,
-# it will wait at least delay ms, depending on what else is running on your computer at that time.
-# It returns the code of the pressed key or -1 if no key was pressed before the specified time had elapsed.
-key = cv2.waitKey(0)  # 0 for image
 
-#if key == ord('q'):
-#    break
+    # For Playing
+    # The function waitKey waits for a key event infinitely (when delay < 0 ) or for delay milliseconds, when it is positive.
+    # Since the OS has a minimum time between switching threads, the function will not wait exactly delay ms,
+    # it will wait at least delay ms, depending on what else is running on your computer at that time.
+    # It returns the code of the pressed key or -1 if no key was pressed before the specified time had elapsed.
+    key = cv2.waitKey(2000) # 1000 milliseconds
+    #key = cv2.waitKey(0)  # 0 for image
+
+
+    # Saves an image to a specified file.
+    cv2.imwrite(filename, frame)
+
+    if key == ord('q'):
+        break
 
 print('number of frame - ', number_of_frames_captured)
 
 # write frame to image file
 filename = "tiger.jpg"
 # Saves an image to a specified file.
-cv2.imwrite(filename, gray_frame)
+cv2.imwrite(filename, frame)
 
 # Shutdown the camera
 # Closes video file or capturing device

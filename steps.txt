@@ -1,0 +1,8 @@
+1) capture 1 frame per second
+2) feed it to yolov3_object_detection.py
+3) wrap all calls in one python code
+4) see if yolov3 can be improved
+5) check if we can determine whats to left right up down centre
+6) check if distance can be measured
+7) text to audio , list things to left right up down centre
+8) if something is less than 50% probability say 'most probably but not sure' when listing that object in audio
